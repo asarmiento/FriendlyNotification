@@ -26,6 +26,9 @@ class EmployeeController extends Controller
 
         $tStore =new Employees();
         $tStore->name = $data["name"];
+        $tStore->id_telegram = $data["id_telegram"];
+        $tStore->type = $data["type"];
+        $tStore->store_id = $data["store_id"];
         $tStore->save();
 
         return response()->json(['message'=>"Se registro con exito"],200);
