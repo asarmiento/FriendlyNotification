@@ -18,7 +18,7 @@ class EmployeeController extends Controller
 
     public function listsStore()
     {
-        return Employees::all();
+        return Employees::with('tStore')->get();
     }
     public function store(Request $request)
     {

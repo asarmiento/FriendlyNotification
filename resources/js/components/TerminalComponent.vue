@@ -13,7 +13,7 @@
                                <input type="text" v-model="data.name" class="form-control" />
                            </div>
                            <div class="form-group">
-                               <label>ID Telegram: </label>
+                               <label>Código: </label>
                                <input type="text" v-model="data.id_telegram" class="form-control" />
                            </div>
                            <div class="form-group">
@@ -49,7 +49,7 @@
                                     <td>{{index+1}}</td>
                                     <td>{{list.name}}</td>
                                     <td>{{list.id_telegram}}</td>
-                                    <td>{{list.store_id}}</td>
+                                    <td>{{list.t_store.name}}</td>
                                 </tr>
                                 </tbody>
                             </table>

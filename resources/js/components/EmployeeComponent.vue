@@ -49,7 +49,7 @@
                                     <td>{{index+1}}</td>
                                     <td>{{list.name}}</td>
                                     <td>{{list.id_telegram}}</td>
-                                    <td>{{list.store_id}}</td>
+                                    <td>{{list.t_store.name}}</td>
                                 </tr>
                                 </tbody>
                             </table>

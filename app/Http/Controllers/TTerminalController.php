@@ -18,7 +18,7 @@ class TTerminalController extends Controller
 
     public function listsStore()
     {
-        return TTerminal::all();
+        return TTerminal::with('tStore')->get();
     }
     public function store(Request $request)
     {
