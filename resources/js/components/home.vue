@@ -10,7 +10,7 @@
                                 <a href="" class="btn btn-outline-primary btn-lg ">Cambio de 500</a>
                             </div>
                             <div class="col-6 text-center mt-5 p-4">
-                                <a href="" class="btn btn-outline-primary btn-lg">Codigo</a>
+                                <a href="" class="btn btn-outline-primary btn-lg">vAsistencia</a>
                             </div>
                         </div>
                     </div>
