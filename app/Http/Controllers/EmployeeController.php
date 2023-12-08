@@ -1,0 +1,33 @@
+<?php
+
+
+namespace App\Http\Controllers;
+
+
+use App\Models\Employees;
+use App\Models\TStore;
+use Illuminate\Http\Request;
+
+class EmployeeController extends Controller
+{
+
+    public function index()
+    {
+        return view('employees');
+    }
+
+    public function listsStore()
+    {
+        return Employees::all();
+    }
+    public function store(Request $request)
+    {
+        $data = $request->all();
+
+        $tStore =new Employees();
+        $tStore->name = $data["name"];
+        $tStore->save();
+
+        return response()->json(['message'=>"Se registro con exito"],200);
+    }
+}

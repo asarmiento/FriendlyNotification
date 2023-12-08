@@ -13,15 +13,17 @@ class SendNotification extends Notification
 {
     use Queueable;
     protected $mensaje;
+    private $notificable;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($mensaje)
+    public function __construct($mensaje,$notificable)
     {
         $this->mensaje = $mensaje;
+        $this->notificable = $notificable;
     }
 
     /**
@@ -64,7 +66,7 @@ class SendNotification extends Notification
     public function toTelegram($notifiable)
     {
         return TelegramMessage::create()
-            ->to('-4082108838')
+            ->to($this->notificable)
             ->content($this->mensaje);
     }
 }
