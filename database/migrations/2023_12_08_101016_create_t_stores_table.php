@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('t_stores', function (Blueprint $table) {
             $table->id();
-            $table->rename("name");
+            $table->string("name");
             $table->timestamps();
             $table->engine ="InnoDB";
         });
