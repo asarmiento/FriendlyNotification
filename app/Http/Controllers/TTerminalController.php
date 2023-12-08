@@ -13,7 +13,7 @@ class TTerminalController extends Controller
 
     public function index()
     {
-        return view('Store');
+        return view('terminal');
     }
 
     public function listsStore()
