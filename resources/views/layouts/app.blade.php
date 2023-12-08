@@ -19,7 +19,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-md">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Friendly Notification') }}
@@ -37,7 +37,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
-                        @guest
+          {{--              @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -67,14 +67,48 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        @endguest--}}
                     </ul>
                 </div>
             </div>
         </nav>
 
         <main class="">
-            @yield('content')
+           <div style="display: grid; grid-template-rows: 100%; grid-template-columns: 15% 85%">
+               <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; background-color:#1d293b; ">
+                   <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+
+                       <span class="fs-4"><img src="http://diunsa.friendlystore.net/Logo/Logo_Diunsa_2022-03.png" width="200" alt=""></span>
+                   </a>
+                   <hr>
+                   <ul class="nav nav-pills flex-column mb-auto">
+                       <li class="nav-item">
+                           <a href="{{route('tienda')}}" class="nav-link active" aria-current="page">
+                               <svg class="bi me-2" width="16" height="16"><use xlink:href="Tienda"></use></svg>
+                               Registrar Tienda
+                           </a>
+                       </li>
+                       <li>
+                           <a href="{{route('employee')}}" class="nav-link link-dark">
+                               <svg class="bi me-2" width="16" height="16"><use xlink:href="Sipervisor"></use></svg>
+                               Registrar Supervisor
+                           </a>
+                       </li>
+                       <li>
+                           <a href="{{route('terminal')}}" class="nav-link link-dark">
+                               <svg class="bi me-2" width="16" height="16"><use xlink:href="Terminal"></use></svg>
+                               Registrar Terminal
+                           </a>
+                       </li>
+
+                   </ul>
+                   <hr>
+                   <div class="dropdown">
+
+                   </div>
+               </div>
+               @yield('content')
+           </div>
         </main>
     </div>
 </body>

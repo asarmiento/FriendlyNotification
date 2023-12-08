@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('ejemplo');
 });
 
 Route::get('ejemplo', [EnviarController::class, 'index']);
-Route::get('registrar-tienda', [TStoreController::class, 'index']);
+Route::get('registrar-tienda', [TStoreController::class, 'index'])->name('tienda');
+Route::get('registrar-supervisor', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('employee');
+Route::get('registrar-terminal', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('terminal');
 Route::get('list-stores', [TStoreController::class, 'listsStore']);
 Route::get('/send-store', [EnviarController::class, 'Sendstore']);
 Route::get('/employee-store/{token}', [EnviarController::class, 'SendEmployeeStore']);
@@ -31,5 +33,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::post('ejemplo-store', [EnviarController::class, 'store'])->name('send-store');
-Route::post('save-store', [TStoreController::class, 'store'])->name('send-store');
+Route::post('save-store', [TStoreController::class, 'store']);
+Route::post('save-employee', [\App\Http\Controllers\EmployeeController::class, 'store']);
 Route::post('ejemplo-store', [EnviarController::class, 'store'])->name('send-store');

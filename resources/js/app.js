@@ -23,6 +23,10 @@ import HomeComponent from './components/home.vue';
 app.component('home', HomeComponent);
 import StoreComponent from './components/StoreComponent.vue';
 app.component('registerStore', StoreComponent);
+import EmployeeComponent from './components/EmployeeComponent.vue';
+app.component('registerEmployee', EmployeeComponent);
+import TerminalComponent from './components/TerminalComponent.vue';
+app.component('registerTerminal', TerminalComponent);
 
 /**
  * The following block of code may be used to automatically register your

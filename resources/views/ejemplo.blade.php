@@ -34,7 +34,7 @@
 <body class="m-0 border-0" >
 
 <div id="app" >
-    <?php $full_address = execCmd(); echo $full_address  ?>
+
 <home/>
 </div>
 <script
