@@ -12,7 +12,7 @@ class TStoreController extends Controller
 
     public function index()
     {
-        return view('Store');
+        return view('store');
     }
 
     public function listsStore()
