@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EnviarController;
 use App\Http\Controllers\TStoreController;
+use App\Http\Controllers\TTerminalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +24,10 @@ Route::get('/', function () {
 Route::get('ejemplo', [EnviarController::class, 'index']);
 Route::get('registrar-tienda', [TStoreController::class, 'index'])->name('tienda');
 Route::get('registrar-supervisor', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('employee');
-Route::get('registrar-terminal', [\App\Http\Controllers\EmployeeController::class, 'index'])->name('terminal');
+Route::get('registrar-terminal', [\App\Http\Controllers\TTerminalController::class, 'index'])->name('terminal');
 Route::get('list-stores', [TStoreController::class, 'listsStore']);
+Route::get('list-employees', [EmployeeController::class, 'listsStore']);
+Route::get('list-terminal', [TTerminalController::class, 'listsStore']);
 Route::get('/send-store', [EnviarController::class, 'Sendstore']);
 Route::get('/employee-store/{token}', [EnviarController::class, 'SendEmployeeStore']);
 

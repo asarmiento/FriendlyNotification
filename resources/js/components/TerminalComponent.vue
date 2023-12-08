@@ -93,13 +93,13 @@
                 })
             },
             lists(){
-                axios.post('/list-employees', this.data).then(response=>
+                axios.get('/list-employees', this.data).then(response=>
                 {
                    this.listEmployees = response.data
                 })
             },
             listsStore(){
-                axios.post('/list-employees', this.data).then(response=>
+                axios.get('/list-stores', this.data).then(response=>
                 {
                    this.listStore = response.data
                 })

@@ -72,7 +72,7 @@
                 })
             },
             lists(){
-                axios.post('/list-stores', this.data).then(response=>
+                axios.get('/list-stores', this.data).then(response=>
                 {
                    this.listStores = response.data
                 })
