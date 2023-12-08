@@ -3,7 +3,7 @@
 
                     <div class="card-body">
                         <div class="marca-de-agua" style="width:870px !important; height:auto !important;">
-                            <img alt="" src="http://127.0.0.1:8000/Logo/Logo_Diunsa_2022-03.png" /></div>
+                            <img alt="" src="http://diunsa.friendlystore.net/Logo/Logo_Diunsa_2022-03.png" /></div>
 
                         <div class="row">
                             <div class="col-6 text-center mt-5 p-4">
