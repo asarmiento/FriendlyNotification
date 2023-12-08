@@ -21,9 +21,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-md">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Friendly Notification') }}
-                </a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -83,19 +81,19 @@
                    <hr>
                    <ul class="nav nav-pills flex-column mb-auto">
                        <li class="nav-item">
-                           <a href="{{route('tienda')}}" class="nav-link active" aria-current="page">
+                           <a href="{{route('tienda')}}" @if(request()->routeIs('tienda')) class="nav-link active" @else class="nav-link link-dark"  @endif  aria-current="page">
                                <svg class="bi me-2" width="16" height="16"><use xlink:href="Tienda"></use></svg>
                                Registrar Tienda
                            </a>
                        </li>
                        <li>
-                           <a href="{{route('employee')}}" class="nav-link link-dark">
+                           <a href="{{route('employee')}}" @if(request()->routeIs('employee')) class="nav-link active" @else class="nav-link link-dark"  @endif  >
                                <svg class="bi me-2" width="16" height="16"><use xlink:href="Sipervisor"></use></svg>
                                Registrar Supervisor
                            </a>
                        </li>
                        <li>
-                           <a href="{{route('terminal')}}" class="nav-link link-dark">
+                           <a href="{{route('terminal')}}" @if(request()->routeIs('terminal')) class="nav-link active" @else class="nav-link link-dark"  @endif>
                                <svg class="bi me-2" width="16" height="16"><use xlink:href="Terminal"></use></svg>
                                Registrar Terminal
                            </a>

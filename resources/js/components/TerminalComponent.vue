@@ -38,8 +38,8 @@
                                     <th>
                                         #
                                     </th>
-                                    <th>Supervisor</th>
-                                    <th>ID Telegram</th>
+                                    <th>Terminal</th>
+                                    <th>Código</th>
                                     <th>Nombre de tienda</th>
                                 </tr>
                                 </thead>
