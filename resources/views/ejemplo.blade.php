@@ -34,9 +34,32 @@
 <body class="m-0 border-0" >
 
 <div id="app" >
-
+@if($terminal['store']!= null && $terminal["terminal"] !=null)
 <home/>
+    @else
+        <div class="container">
+
+            <div class="card-body">
+                <div class="marca-de-agua" style="width:470px !important; height:auto !important;">
+                    <img alt="" src="http://diunsa.friendlystore.net/Logo/Logo_Diunsa_2022-03.png" />
+
+                </div>
+
+                <div class="row ">
+                    <div class="col-md-12 text-center">
+                        <h2>Sistema de Notificación </h2>
+                    </div>
+                </div>
+
+                <div class="row text-center">
+                   <h1 class="text-danger">Esta ruta no esta AUTORIZADA</h1>
+                </div>
+
+            </div>
+        </div>
+    @endif
 </div>
+
 <script
     src="https://code.jquery.com/jquery-3.7.1.js"
     integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="

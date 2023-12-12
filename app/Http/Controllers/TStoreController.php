@@ -25,6 +25,7 @@ class TStoreController extends Controller
 
         $tStore =new TStore();
         $tStore->name = $data["name"];
+        $tStore->code = $data["code"];
         $tStore->save();
 
         return response()->json(['message'=>"Se registro con exito"],200);

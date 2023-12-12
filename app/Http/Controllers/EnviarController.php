@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employees;
+use App\Models\TStore;
+use App\Models\TTerminal;
 use Illuminate\Http\Request;
 use App\Notifications\SendNotification;
 use Illuminate\Support\Facades\Notification;
@@ -11,11 +14,24 @@ class EnviarController extends Controller
 {
     use Notifiable;
 
-    public function index()
+    public function index($terminal)
     {
-      return view('ejemplo');
+
+        $terminal = $this->searchBox($terminal,1);
+      return view('ejemplo',compact('terminal'));
     }
 
+    public function sendParams()
+    {
+      //  return  session("code");
+    }
+
+    public function convetParams($code)
+    {
+
+
+      // session('code',$code);
+    }
     public function store(Request $request)
     {
         $this->notify(new SendNotification($request->get('message'),'-4022931253'));
@@ -30,15 +46,43 @@ class EnviarController extends Controller
         return redirect()->back();
     }
 
-    public function SendEmployeeStore($token)
+    public function searchBox($data,$type)
     {
-      //  dd($number);
-        if($token=='gg5g3453435'){
-            $number ='6420652442';
-        }elseif($token=='ssgdfgsdfggsererg'){
-            $number ='6420652442';
+        if($type != 1){
+                $separar = explode("/",$data['code']);
+            $codesD = explode('-',$separar[2]);
+            $store  = TStore::where("code",$codesD[2])->first();
+        }else{
+
+           // echo json_encode("prueba".$data);
+            $codesD = explode('-',$data);
+           // echo json_encode("exacto ".COUNT($codesD));
+            $store  = TStore::where("code",$codesD[2])->first();
         }
-        $this->notify(new SendNotification("Te ocupamos en Caja 1","$number"));
+
+
+        $terminal = TTerminal::where('mac_address',$codesD[1])->where("store_id",$store->id)->first();
+        return ["store"=>$store,"terminal"=>$terminal];
+    }
+    public function SendEmployeeStore(Request $request)
+    {
+        $data = $request->all();
+        //echo json_encode(($data));
+        $type = $data['type'];
+       $dataRev = $this->searchBox($data,0);
+       // echo json_encode(($terminal));
+        $text = "Se le solicita en Caja ".$dataRev['terminal']->mac_address;
+        if($type ==1){
+            $text = "Se le solicita cambio de 500 en Caja ".$dataRev['terminal']->mac_address;
+        }
+        $employees = Employees::where("store_id",$dataRev['store']->id)->where("type","Supervisor")->get();
+        if($dataRev['terminal'] != null){
+            foreach ($employees AS $employee){
+                $idTelegram =$employee->id_telegram;
+                $this->notify(new SendNotification($text,"$idTelegram"));
+            }
+        }
+
 
         return redirect()->back();
     }

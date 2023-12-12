@@ -10,7 +10,11 @@
                        <div class="row">
                            <div class="form-group">
                                <label>Nombre de la tienda: </label>
-                               <input type="text" v-model="data.name" class="form-control" />
+                               <input type="text" v-model="data.name" @keyup="revertName()" class="form-control" />
+                           </div>
+                           <div class="form-group">
+                               <label>Código de la tienda: </label>
+                               <input type="text" v-model="data.code" disabled class="form-control" />
                            </div>
                        </div>
 
@@ -28,12 +32,14 @@
                                         #
                                     </th>
                                     <th>Nombre de tienda</th>
+                                    <th>Código de tienda</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr v-for="(list,index) in listStores">
                                     <td>{{index+1}}</td>
                                     <td>{{list.name}}</td>
+                                    <td>{{list.code}}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -54,6 +60,7 @@
         data(){
           return {
               data:{
+                  code:"",
                   name:""
               },
               listStores:[]
@@ -67,6 +74,8 @@
             send(){
                 axios.post('/save-store', this.data).then(response=>
                 {
+                    this.data.name = ''
+                    this.data.code=''
                     Swal.fire("Excelente", "Se guardó con Éxito")
                     this.lists()
                 })
@@ -76,6 +85,10 @@
                 {
                    this.listStores = response.data
                 })
+            },
+            revertName(){
+              this.data.code =  this.data.name.replace(" ","_").toLowerCase()
+              this.data.code =  this.data.code.replace(" ","_").toLowerCase()
             }
         }
     }

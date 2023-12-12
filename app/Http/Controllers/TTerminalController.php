@@ -20,6 +20,11 @@ class TTerminalController extends Controller
     {
         return TTerminal::with('tStore')->get();
     }
+
+    public function codeTerminal($store)
+    {
+        return TTerminal::where("store_id",$store)->with('tStore')->count();
+    }
     public function store(Request $request)
     {
         $data = $request->all();

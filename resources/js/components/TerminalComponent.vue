@@ -10,18 +10,18 @@
                        <div class="row">
                            <div class="form-group">
                                <label>Nombre Terminal: </label>
-                               <input type="text" v-model="data.name" class="form-control" />
-                           </div>
-                           <div class="form-group">
-                               <label>Código: </label>
-                               <input type="text" v-model="data.id_telegram" class="form-control" />
+                               <input type="text" v-model="data.name" disabled class="form-control" />
                            </div>
                            <div class="form-group">
                                <label>Tienda tienda: </label>
-                               <select v-model="data.store_id" class="form-control" >
+                               <select v-model="data.store_id" @change="changeStore"  class="form-control" >
 
                                    <option v-for="list in listStore" :value="list.id">{{list.name}}</option>
                                </select>
+                           </div>
+                           <div class="form-group">
+                               <label>Código: </label>
+                               <input type="text" v-model="data.mac_address" disabled class="form-control" />
                            </div>
                        </div>
 
@@ -45,10 +45,10 @@
                                 </thead>
 
                                 <tbody>
-                                <tr v-for="(list,index) in listEmployees">
+                                <tr v-for="(list,index) in listTerminals">
                                     <td>{{index+1}}</td>
                                     <td>{{list.name}}</td>
-                                    <td>{{list.id_telegram}}</td>
+                                    <td>{{list.mac_address}}</td>
                                     <td>{{list.t_store.name}}</td>
                                 </tr>
                                 </tbody>
@@ -70,12 +70,11 @@
         data(){
           return {
               data:{
-                  name:"",
-                  id_telegram:"",
-                  type:"Supervisor",
+                  name:"Caja",
+                  mac_address:"",
                   store_id:"",
               },
-              listEmployees:[],
+              listTerminals:[],
               listStore:[],
           }
         },
@@ -83,25 +82,35 @@
             console.log('Component mounted.')
             this.lists()
             this.listsStore()
+
         },
         methods:{
             send(){
-                axios.post('/save-employee', this.data).then(response=>
+                axios.post('/save-terminal', this.data).then(response=>
                 {
                     Swal.fire("Excelente", "Se guardó con Éxito")
                     this.lists()
                 })
             },
+            changeStore(){
+                this.codeTerminal(this.data.store_id)
+            },
             lists(){
-                axios.get('/list-employees', this.data).then(response=>
+                axios.get('/list-terminals', this.data).then(response=>
                 {
-                   this.listEmployees = response.data
+                   this.listTerminals = response.data
                 })
             },
             listsStore(){
                 axios.get('/list-stores', this.data).then(response=>
                 {
                    this.listStore = response.data
+                })
+            },
+            codeTerminal(id){
+                axios.get('/list-code-terminal/'+id, this.data).then(response=>
+                {
+                   this.data.mac_address = response.data +1
                 })
             }
         }
