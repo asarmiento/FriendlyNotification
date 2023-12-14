@@ -62,7 +62,7 @@ class EnviarController extends Controller
             // echo json_encode("exacto ".COUNT($codesD));
             $store  = TStore::where("code",$codesD)->first();
         }
-        echo json_encode("exacto ".json_encode($codesD)." ".$codesT);
+      //  echo json_encode("exacto ".json_encode($codesD)." ".$codesT);
         $terminal =null;
         if($store != null){
             $terminal = TTerminal::where('mac_address',$codesT)->where("store_id",$store->id)->first();

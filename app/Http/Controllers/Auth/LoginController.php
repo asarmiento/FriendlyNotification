@@ -42,7 +42,7 @@ class LoginController extends Controller
     }
 
 
-    public function login(Request $request)
+    public function storeLogin(Request $request)
     {
 
         $user = User::where('email', $request->email)->first();
