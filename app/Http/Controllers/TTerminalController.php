@@ -18,7 +18,7 @@ class TTerminalController extends Controller
 
     public function listsStore()
     {
-        return TTerminal::with('tStore')->get();
+        return TTerminal::with('tStore')->orderBy('store_id','ASC')->get();
     }
 
     public function codeTerminal($store)

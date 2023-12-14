@@ -11,6 +11,6 @@ class TTerminal extends Model
 
     public function tStore()
     {
-        return $this->belongsTo(TStore::class, 'store_id','id');
+        return $this->belongsTo(TStore::class, 'store_id','id')->orderBy('name','ASC');
     }
 }

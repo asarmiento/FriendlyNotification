@@ -88,6 +88,8 @@
             send(){
                 axios.post('/save-terminal', this.data).then(response=>
                 {
+                    this.data.name =''
+                    this.data.mac_address =''
                     Swal.fire("Excelente", "Se guardó con Éxito")
                     this.lists()
                 })
