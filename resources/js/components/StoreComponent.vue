@@ -11,7 +11,7 @@
 
                            <div class="form-group">
                                <label>numero de la tienda: </label>
-                               <input type="text" v-model="data.code" disabled class="form-control" />
+                               <input type="text" v-model="data.code"  class="form-control" />
                            </div>
                            <div class="form-group">
                                <label>Nombre de la tienda: </label>
