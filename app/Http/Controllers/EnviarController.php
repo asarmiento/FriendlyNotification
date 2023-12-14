@@ -18,19 +18,19 @@ class EnviarController extends Controller
     {
 
         $terminal = $this->searchBox($terminal,1);
-      return view('ejemplo',compact('terminal'));
+        return view('ejemplo',compact('terminal'));
     }
 
     public function sendParams()
     {
-      //  return  session("code");
+        //  return  session("code");
     }
 
     public function convetParams($code)
     {
 
 
-      // session('code',$code);
+        // session('code',$code);
     }
     public function store(Request $request)
     {
@@ -48,32 +48,37 @@ class EnviarController extends Controller
 
     public function searchBox($data,$type)
     {
+        $codesD =substr($data['code'],0,2);
+        $codesT =substr($data['code'],2,2);
         if($type != 1){
-                $separar = explode("/",$data['code']);
-            $codesD = explode('-',$separar[2]);
-            $store  = TStore::where("code",$codesD[2])->first();
+           /* $separar = explode("/",$data['code']);
+            $codesD = explode('-',$separar[2]);*/
+
+            $store  = TStore::where("code",$codesD)->first();
         }else{
 
-           // echo json_encode("prueba".$data);
-            $codesD = explode('-',$data);
-           // echo json_encode("exacto ".COUNT($codesD));
-            $store  = TStore::where("code",$codesD[2])->first();
+            // echo json_encode("prueba".$data);
+           // $codesD = explode('-',$data);
+            // echo json_encode("exacto ".COUNT($codesD));
+            $store  = TStore::where("code",$codesD)->first();
         }
-
+        echo json_encode("exacto ".json_encode($codesD)." ".$codesT);
         $terminal =null;
-if($store != null){
-    $terminal = TTerminal::where('mac_address',$codesD[1])->where("store_id",$store->id)->first();
-}
+        if($store != null){
+            $terminal = TTerminal::where('mac_address',$codesT)->where("store_id",$store->id)->first();
+        }
 
         return ["store"=>$store,"terminal"=>$terminal];
     }
+
     public function SendEmployeeStore(Request $request)
     {
         $data = $request->all();
         //echo json_encode(($data));
         $type = $data['type'];
-       $dataRev = $this->searchBox($data,0);
-       // echo json_encode(($terminal));
+        $dataRev = $this->searchBox($data,0);
+        // echo json_encode(($terminal));
+        if($dataRev['terminal'] != null){
         $text = "Se le solicita en Caja ".$dataRev['terminal']->mac_address;
         if($type ==1){
             $text = "Se le solicita cambio de 500 en Caja ".$dataRev['terminal']->mac_address;
@@ -85,22 +90,11 @@ if($store != null){
                 $this->notify(new SendNotification($text,"$idTelegram"));
             }
         }
+            return response()->json(["message"=>" fue enviado con extio"],200);
+}
 
-
-        return redirect()->back();
+        return response()->json(["message"=>"no se encuentra la terminal"],422);
     }
-    public function tkn($length)
-    {
 
-        if($length == NULL){ $length = 30; }
-        $characters =
-            '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString += $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
 
-    }
 }

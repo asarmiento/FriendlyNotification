@@ -31,7 +31,7 @@ class TTerminalController extends Controller
 
         $tStore =new TTerminal();
         $tStore->name = $data["name"];
-        $tStore->mac_address = $data["mac_address"];
+        $tStore->mac_address = "0".$data["mac_address"];
         $tStore->store_id = $data["store_id"];
         $tStore->save();
 

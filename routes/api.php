@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EnviarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class,'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->post('/terminal/send-message-employee',  [EnviarController::class, 'SendEmployeeStore']);

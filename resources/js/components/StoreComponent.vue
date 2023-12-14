@@ -8,13 +8,14 @@
 
                     <div class="card-body">
                        <div class="row">
+
+                           <div class="form-group">
+                               <label>numero de la tienda: </label>
+                               <input type="text" v-model="data.code" disabled class="form-control" />
+                           </div>
                            <div class="form-group">
                                <label>Nombre de la tienda: </label>
                                <input type="text" v-model="data.name" @keyup="revertName()" class="form-control" />
-                           </div>
-                           <div class="form-group">
-                               <label>Código de la tienda: </label>
-                               <input type="text" v-model="data.code" disabled class="form-control" />
                            </div>
                        </div>
 
@@ -87,8 +88,8 @@
                 })
             },
             revertName(){
-              this.data.code =  this.data.name.replace(" ","_").toLowerCase()
-              this.data.code =  this.data.code.replace(" ","_").toLowerCase()
+            /*  this.data.code =  this.data.name.replace(" ","_").toLowerCase()
+              this.data.code =  this.data.code.replace(" ","_").toLowerCase()*/
             }
         }
     }
