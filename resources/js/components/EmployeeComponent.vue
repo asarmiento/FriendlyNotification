@@ -88,6 +88,9 @@
             send(){
                 axios.post('/save-employee', this.data).then(response=>
                 {
+                    this.data.name ="";
+                    this.data.id_telegram ="";
+
                     Swal.fire("Excelente", "Se guardó con Éxito")
                     this.lists()
                 })

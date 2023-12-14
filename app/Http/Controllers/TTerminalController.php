@@ -31,7 +31,11 @@ class TTerminalController extends Controller
 
         $tStore =new TTerminal();
         $tStore->name = $data["name"];
-        $tStore->mac_address = "0".$data["mac_address"];
+        if($data["mac_address"] < 10) {
+            $tStore->mac_address = "0" . $data["mac_address"];
+        }else{
+            $tStore->mac_address =$data["mac_address"];
+       }
         $tStore->store_id = $data["store_id"];
         $tStore->save();
 
